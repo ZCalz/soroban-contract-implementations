@@ -1,0 +1,17 @@
+[package]
+name = "auction"
+description = "Tier 4 - English auction with a pull-based refund pattern"
+edition.workspace = true
+license.workspace = true
+publish = false
+version.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["testutils"] }

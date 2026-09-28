@@ -1,0 +1,43 @@
+[workspace]
+resolver = "2"
+# Listed explicitly (not "contracts/*") because 03, 05, 17, 18 are README-only
+# folders with no Cargo.toml -- see contracts/README.md.
+members = [
+    "contracts/01-counter",
+    "contracts/02-todo-list",
+    "contracts/04-ownable",
+    "contracts/06-multi-role-access",
+    "contracts/07-fungible-token",
+    "contracts/08-faucet-airdrop",
+    "contracts/09-escrow-vesting",
+    "contracts/10-voting-dao",
+    "contracts/11-escrow-arbitration",
+    "contracts/12-auction",
+    "contracts/13-amm-swap-pool",
+    "contracts/14-upgradeable-contract",
+    "contracts/15-contract-factory",
+    "contracts/16-events-indexer",
+]
+
+[workspace.package]
+authors = ["you"]
+edition = "2024"
+license = "MIT"
+version = "0.1.0"
+
+[workspace.dependencies]
+soroban-sdk = "26.1.0"
+
+[profile.release]
+opt-level = "z"
+debug = false
+lto = true
+debug-assertions = false
+codegen-units = 1
+panic = "abort"
+overflow-checks = true
+strip = true
+
+[profile.release-with-logs]
+debug-assertions = true
+inherits = "release"

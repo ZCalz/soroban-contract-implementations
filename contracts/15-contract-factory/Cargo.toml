@@ -1,0 +1,22 @@
+[package]
+name = "contract-factory"
+description = "Tier 5 - deploys new instances of another contract on demand"
+edition.workspace = true
+license.workspace = true
+publish = false
+version.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+doctest = false
+
+[features]
+# Off by default so `cargo test` / `cargo test --workspace` work out of the box
+# without requiring 01-counter to be pre-built as a .wasm. See README.md.
+factory-integration-test = []
+
+[dependencies]
+soroban-sdk = { workspace = true }
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["testutils"] }

@@ -1,0 +1,17 @@
+[package]
+name = "escrow-vesting"
+description = "Tier 3 - linear token vesting with a cliff"
+edition.workspace = true
+license.workspace = true
+publish = false
+version.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["testutils"] }

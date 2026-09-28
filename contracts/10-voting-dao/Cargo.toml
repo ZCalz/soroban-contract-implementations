@@ -1,0 +1,17 @@
+[package]
+name = "voting-dao"
+description = "Tier 4 - one-address-one-vote proposals with quorum-gated execution"
+edition.workspace = true
+license.workspace = true
+publish = false
+version.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["testutils"] }

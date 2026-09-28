@@ -1,0 +1,17 @@
+[package]
+name = "todo-list"
+description = "Tier 1 - a per-user todo list backed by a Vec in storage"
+edition.workspace = true
+license.workspace = true
+publish = false
+version.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+doctest = false
+
+[dependencies]
+soroban-sdk = { workspace = true }
+
+[dev-dependencies]
+soroban-sdk = { workspace = true, features = ["testutils"] }
