@@ -16,7 +16,7 @@ members = [
     "contracts/13-amm-swap-pool",
     "contracts/14-upgradeable-contract",
     "contracts/15-contract-factory",
-    "contracts/16-events-indexer",
+    "contracts/16-events-indexer", "contracts/experimental",
 ]
 
 [workspace.package]

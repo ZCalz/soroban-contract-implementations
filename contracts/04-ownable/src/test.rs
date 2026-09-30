@@ -3,7 +3,7 @@ extern crate std;
 
 use super::*;
 use soroban_sdk::testutils::{Address as _, MockAuth, MockAuthInvoke};
-use soroban_sdk::IntoVal;
+use soroban_sdk::{IntoVal, InvokeError};
 
 fn setup(env: &Env) -> (Address, OwnableClient) {
     let admin = Address::generate(env);
@@ -16,7 +16,9 @@ fn constructed_with_zero_value() {
     let env = Env::default();
     env.mock_all_auths();
     let (admin, client) = setup(&env);
-    todo!("assert client.admin() == admin and client.get_value() == 0")
+    // todo!("assert client.admin() == admin and client.get_value() == 0")
+    assert_eq!(client.admin(), admin);
+    assert_eq!(client.get_value(), 0_i128);
 }
 
 #[test]
@@ -24,7 +26,9 @@ fn admin_can_set_value() {
     let env = Env::default();
     env.mock_all_auths();
     let (_admin, client) = setup(&env);
-    todo!("call set_value(&42), assert get_value() == 42")
+    // todo!("call set_value(&42), assert get_value() == 42")
+    client.set_value(&42_i128);
+    assert_eq!(client.get_value(), 42_i128);
 }
 
 #[test]
@@ -45,7 +49,8 @@ fn non_admin_cannot_set_value() {
         },
     }]);
 
-    todo!("assert client.try_set_value(&42) is an error")
+    // todo!("assert client.try_set_value(&42) is an error")
+    assert!(client.try_set_value(&42).is_err());
 }
 
 #[test]
@@ -54,8 +59,10 @@ fn transfer_ownership_updates_admin() {
     env.mock_all_auths();
     let (_admin, client) = setup(&env);
     let new_admin = Address::generate(&env);
-    todo!(
-        "call transfer_ownership(&new_admin), assert client.admin() == new_admin, \
-         then assert the OLD admin can no longer call set_value (stretch)"
-    )
+    // todo!(
+    //     "call transfer_ownership(&new_admin), assert client.admin() == new_admin, \
+    //      then assert the OLD admin can no longer call set_value (stretch)"
+    // )
+    client.transfer_ownership(&new_admin);
+    assert_eq!(client.admin(), new_admin);
 }
